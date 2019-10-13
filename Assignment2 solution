@@ -1,0 +1,75 @@
+Solution 1
+
+l = []
+s = input("Enter the string: ")
+k = int(input("enter the length of substring"))
+
+l = [s[i:i + k] for i in range(0, len(s), k)]
+print(l)
+for i in l:
+    for j in range(len(i)):
+        res = [i[:-1] for i in l if l[i][-1] == ' ']
+    else:
+        continue
+print(res)
+
+Solution 2
+
+a=list(map(int,input("enter the list: ").split(',')))
+k=int(input("enter the sum:"))
+b=[]
+for i in range(len(a)-2):
+    if(a[i] + a[i+1] + a[i+2] == k):
+        b.append([a[i],a[i+1],a[i+2]])
+if(b==[]):
+    print("None")
+else:
+    print(*b)
+    
+Solution 3
+
+def check(arr, n): 
+  
+    modify = 0
+      
+    
+    if (arr[n - 1] >= arr[n - 2]): 
+        arr[n-1] = arr[n-2] - 1
+        modify += 1
+      
+    
+    if (arr[0] <= arr[1]): 
+        arr[0] = arr[0] + 1
+        modify += 1
+  
+     
+    for i in range(n-2, 0, -1): 
+  
+        
+        if (arr[i - 1] <= arr[i] and arr[i + 1] <= arr[i]) or \ 
+        (arr[i - 1] >= arr[i] and arr[i + 1] >= arr[i]): 
+  
+           
+            arr[i] = (arr[i - 1] + arr[i + 1]) // 2
+            modify += 1
+              
+           
+            if (arr[i] == arr[i - 1] or arr[i] == arr[i + 1]): 
+                return False
+  
+  
+   
+    if (modify > 1): 
+        return False
+  
+    return True
+  
+
+if _name_ == "_main_": 
+    arr = [10, 5, 11, 3] 
+    n = len(arr) 
+  
+    if (check(arr, n)): 
+        print("Yes") 
+    else: 
+        print("No")
